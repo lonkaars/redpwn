@@ -15,7 +15,7 @@ db.exec(`CREATE TABLE users(
 db.exec(`INSERT INTO users (username, password) VALUES (
     '${btoa('admin')}',
     '${btoa(crypto.randomUUID)}'
-)`); // "admin" is wachtwoord
+)`);
 
 const app = express();
 
