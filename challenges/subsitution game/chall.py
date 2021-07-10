@@ -156,9 +156,9 @@ def level_6():
 
 # run_level(level_1, 5)
 # run_level(level_2, 10)
-run_level(level_3, 10)
+# run_level(level_3, 10)
 # run_level(level_4, 10)
-# run_level(level_5, 100, test_cases=128)
+run_level(level_5, 100, test_cases=128)
 run_level(level_6, 300, test_cases=128)
 
 print('-' * 80)
