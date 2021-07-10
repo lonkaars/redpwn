@@ -1,0 +1,4 @@
+level 1: initial => target
+level 2: hello => goodbye; ginkoid => ginky 
+level 3: a => ; 
+MAAR dan heb je alleen empty string over dus kan niks replacen
