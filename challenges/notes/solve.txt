@@ -1,0 +1,13 @@
+flag in private note van user ==  admin
+webadress/view/admin laat notes admin zien
+oplossing? : Cookie met user == admin?? of  wachtwoord krijgen?
+auth.json is {"login":true,"username":"admin"}
+
+document.cookie= 'username = admin', {
+          expires: new Date().setFullYear(6969),
+          path: '/',
+          signed: true,
+        }
+
+als je home probeert te openen sluit die meteen
+     
