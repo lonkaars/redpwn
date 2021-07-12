@@ -19,5 +19,6 @@
 - [ctf101](https://ctf101.org/): algemene info over bepaalde soort aanvallen
 	met voorbeelden en uitleg
 - [progress bord](https://github.com/lonkaars/redpwn/projects/1)
+- [payload injectie](https://reverseengineering.stackexchange.com/questions/13928/managing-inputs-for-payload-injection?noredirect=1&lq=1)
 
 ### DAB
