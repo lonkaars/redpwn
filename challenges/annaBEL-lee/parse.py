@@ -13,7 +13,7 @@ for line in lines:
   if len(split) < 2: continue
   time = split[0].split(" ")[0]
   data = split[1].strip()[5:]
-  packets.append({ 'time': time, 'data': data })
+  packets.append({ 'time': time, 'data': data[1:-1].split("|") })
 
 def hexdump(bytes):
   print("|", end="")
@@ -22,12 +22,12 @@ def hexdump(bytes):
     print(chr(n) if 32 <= n <= 127 else ".", end="")
   print("|", end="")
 
+def filter(packet):
+  if packet['data'][0x2f][1] == "0": return False # filter ack only packets
+  return True
+
 for packet in packets:
+  if not filter(packet): continue
   print(packet['time'] + "  ", end="")
-  bytes = packet['data'][1:-1].split("|")
-  for i in range(0, len(bytes), 16):
-    if i != 0: print(" " * ( len(packet['time']) + 2 ), end="")
-    print(' '.join(bytes[i:i+16]), end="")
-    print("  ", end="")
-    hexdump(bytes[i:i+16])
-    print("\n", end="")
+  bytes = packet['data']
+  print(" ".join(packet['data'][-2:]))
