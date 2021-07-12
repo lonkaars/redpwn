@@ -22,13 +22,13 @@ int main(void)
     exit(1);
   }
 
-	// lees 200 bytes van flag.txt naar char[] flag
+	// lees 512 bytes van flag.txt naar char[] flag
   read(fd, flag, sizeof(flag));
   close(fd);
 
   puts("what do you say?");
 
-	// lees 200 bytes (199 + 0x00) van stdin
+	// lees 512 bytes (511 + 0x00) van stdin
   read(0, buffer, sizeof(buffer) - 1);
 	// lees tot aan newline "\n" / 0x0a
   buffer[strcspn(buffer, "\n")] = 0;
