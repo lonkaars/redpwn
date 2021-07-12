@@ -26,8 +26,20 @@ def filter(packet):
   if packet['data'][0x2f][1] == "0": return False # filter ack only packets
   return True
 
+def special(packet):
+  content = packet['data'][-2:]
+  if not content[0] in ["00", "07"] or \
+     not content[1] in ["00", "07"]:
+    # print(" ".join(content))
+    gert = ''
+  else:
+    print(" ".join(content))
+
 for packet in packets:
   if not filter(packet): continue
-  print(packet['time'] + "  ", end="")
+  # special(packet)
+  # print(packet['time'] + "  ", end="")
   bytes = packet['data']
   print(" ".join(packet['data'][-2:]))
+
+
