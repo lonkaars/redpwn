@@ -33,7 +33,7 @@ def generate_token():
         rand.choice(list(allowed_characters)) for _ in range(32)
     )
 
-
+# deze functie is veilig
 def create_user(username, password):
     if any(c not in allowed_characters for c in username):
         return (False, 'Alphanumeric usernames only, please.')
@@ -52,16 +52,17 @@ def create_user(username, password):
     )
     return (True, '')
 
-
+# deze functie is veilig
 def check_login(username, password):
     if any(c not in allowed_characters for c in username):
         return False
     correct_password = execute(
         f'SELECT password FROM users WHERE username=\'{username}\';'
     )
+    print(correct_password)
     if len(correct_password) < 1:
         return False
-    return correct_password[0][0] == password
+    return correct_password[0][0] == password # dit is misschien raar?????
 
 
 @app.route('/', methods=['GET', 'POST'])
