@@ -1,5 +1,10 @@
 # redpwn ctf gedoe
 
+> This was the repository me and Willem used to collaborate on the challenges.
+> A writeup is in the works over at my
+> [blog](https://github.com/lonkaars/blog). And will appear on [my
+> website](https://blog.pipeframe.xyz/post/redpwn2021) once it's finished.
+
 ## game plan
 
 - maak gewoon nieuwe mapjes aan voor elke challenge
